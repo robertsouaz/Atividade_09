@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversão de Moeda</title>
+    <script>
+        function conversao(valor, taxa, moeda) {
+            if (moeda === "dolar") {
+                return valor * taxa;
+            } else if (moeda === "real") {
+                return valor / taxa;
+            } else {
+                return "Moeda não reconhecida.";
+            }
+        }
+
+        function calcular() {
+            const valor = parseFloat(document.getElementById('valor').value);
+            const taxa = parseFloat(document.getElementById('taxa').value);
+            const moeda = document.querySelector('input[name="moeda"]:checked').value;
+            
+            const resultado = conversao(valor, taxa, moeda);
+            document.getElementById('resultado').innerText = `Resultado: ${resultado.toFixed(2)}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Conversão de Moeda</h1>
+    <label for="valor">Valor:</label>
+    <input type="number" id="valor" step="0.01"><br><br>
+
+    <label for="taxa">Taxa de Câmbio (Dólar para Real):</label>
+    <input type="number" id="taxa" step="0.01"><br><br>
+
+    <label>Converter para:</label>
+    <input type="radio" id="dolar" name="moeda" value="dolar" checked>
+    <label for="dolar">Real</label>
+    <input type="radio" id="real" name="moeda" value="real">
+    <label for="real">Dólar</label><br><br>
+
+    <button onclick="calcular()">Converter</button>
+    <p id="resultado"></p>
+</body>
+</html>
